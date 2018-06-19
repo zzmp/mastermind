@@ -1,3 +1,12 @@
+// create the board (makes for a cleaner, easier-to-follow game)
+{
+  const guess = document.querySelector('.guess');
+  let guessHTML = guess.outerHTML;
+  let outerHTML = '';
+  for (let i = 0; i < +document.querySelector('#count').dataset.count; ++i) outerHTML += guessHTML;
+  guess.outerHTML = outerHTML;
+}
+
 // aesthetic adjustment
 document.querySelector('button').style.width = `${document.querySelector('table').offsetWidth}px`;
 
@@ -63,14 +72,9 @@ function judge(guess) {
 }
 
 function record(guess, numCorrectColor, numCorrectPlace, tr) {
-  guess.forEach((color) => {
-    const td = document.createElement('td');
-    td.style.backgroundColor = color;
-    tr.appendChild(td);
-  });
+  guess.forEach((color, i) => tr.querySelectorAll('td')[i].style.backgroundColor = color);
 
-  const response = document.createElement('td');
-  response.classList.add('response');
+  const response = tr.querySelector('.response');
   for (let i = 0; i < numCorrectColor; ++i) {
     const el = document.createElement('div');
     el.style.backgroundColor = 'white';
@@ -81,7 +85,6 @@ function record(guess, numCorrectColor, numCorrectPlace, tr) {
     el.style.backgroundColor = 'black';
     response.appendChild(el);
   }
-  tr.appendChild(response);
 }
 
 function reveal(victory) {
