@@ -2,17 +2,20 @@ table {
   background-color: black;
 }
 
+tr {
+  height: 30px;
+}
+
+td {
+  min-width: 10px;
+}
+
 .request, .response {
   background-color: grey;
-  min-width: 10px;
 }
 
 .response div {
   width: 5px;
   height: 5px;
   margin: 2px;
-}
-
-tr {
-  height: 30px;
 }
