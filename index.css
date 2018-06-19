@@ -7,6 +7,10 @@ tr {
   height: 30px;
 }
 
+th {
+  background-color: lightgrey;
+}
+
 td {
   min-width: 10px;
 }
