@@ -72,7 +72,7 @@ function judge(guess) {
 }
 
 function record(guess, numCorrectColor, numCorrectPlace, tr) {
-  guess.forEach((color, i) => tr.querySelectorAll('td')[i].style.backgroundColor = color);
+  guess.forEach((color, i) => tr.querySelectorAll('td')[i].querySelector('.color').style.backgroundColor = color);
 
   const response = tr.querySelector('.response');
   for (let i = 0; i < numCorrectColor; ++i) {
@@ -91,7 +91,7 @@ function reveal(victory) {
   document.querySelector('[type="submit"]').style.display = 'none';
 
   new Array(...document.querySelectorAll('#solution th')).map((th) => {
-    th.style.backgroundColor = th.dataset.value;
+    th.querySelector('.color').style.backgroundColor = th.dataset.value;
   });
 
   const status = document.querySelector('#status');

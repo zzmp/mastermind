@@ -2,20 +2,34 @@ table {
   background-color: black;
 }
 
-tr {
-  background-color: grey;
-  height: 30px;
-}
-
 th {
   background-color: lightgrey;
 }
 
-td {
+tr {
+  background-color: darkgrey;
+  text-align: center;
+}
+
+th, td:not(.response) {
+  height: 25px;
+}
+
+.color {
+  background-color: grey;
+  border-radius: 50%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+}
+
+td.response {
   min-width: 10px;
 }
 
 .response div {
+  border-radius: 50%;
   width: 5px;
   height: 5px;
   margin: 2px;
