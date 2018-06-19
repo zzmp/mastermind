@@ -1,0 +1,18 @@
+table {
+  background-color: black;
+}
+
+.request, .response {
+  background-color: grey;
+  min-width: 10px;
+}
+
+.response div {
+  width: 5px;
+  height: 5px;
+  margin: 2px;
+}
+
+tr {
+  height: 30px;
+}

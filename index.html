@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Mastermind</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <datalist id="colors">
+      <option>#ff0000</option>
+      <option>#00ff00</option>
+      <option>#0000ff</option>
+      <option>#000000</option>
+      <option>#ffffff</option>
+    </datalist>
+    <p id="status">
+      Guesses remaining: <span id="count" data-count="12">12</span>
+    </p>
+    <table>
+      <colgroup>
+        <col class="request" span="4">
+        <col class="response">
+      </colgroup>
+      <tr id="solution">
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr id="guess">
+        <td><input type="color" list="colors" value="#ffffff"></td>
+        <td><input type="color" list="colors" value="#ffffff"></td>
+        <td><input type="color" list="colors" value="#ffffff"></td>
+        <td><input type="color" list="colors" value="#ffffff"></td>
+      </tr>
+    </table>
+    <button type="submit" onclick="guess()">Guess</button>
+    <script type="application/javascript" src="index.js"></script>
+  </body>
+</html>

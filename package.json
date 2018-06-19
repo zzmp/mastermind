@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "opn index.html"
   },
   "repository": {
     "type": "git",
@@ -14,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/zzmp/mastermind/issues"
   },
-  "homepage": "https://github.com/zzmp/mastermind#readme"
+  "homepage": "https://github.com/zzmp/mastermind#readme",
+  "dependencies": {
+    "opn-cli": "^3.1.0"
+  }
 }
