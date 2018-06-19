@@ -12,7 +12,8 @@ document.querySelector('button').style.width = `${document.querySelector('table'
 
 
 // collect all possible colors
-const colors = new Array(...document.querySelectorAll('#colors option')).map(({value}) => value);
+const colors = new Array(...document.querySelectorAll('#colors option'))
+  .map(({value}) => value);
 
 // helper to get counts of each color, for use in judging
 const count = (guess) => guess.reduce((memo, color) => {
@@ -23,10 +24,10 @@ const count = (guess) => guess.reduce((memo, color) => {
 
 
 // set the solution, using `colors`
-new Array(...document.querySelectorAll('#solution th')).map((th) => {
-  th.dataset.value = colors[Math.floor(Math.random() * colors.length)];
-});
-const solution = new Array(...document.querySelectorAll('#solution th')).map((th) => th.dataset.value);
+new Array(...document.querySelectorAll('#solution th'))
+  .map((th) => th.dataset.value = colors[Math.floor(Math.random() * colors.length)]);
+const solution = new Array(...document.querySelectorAll('#solution th'))
+  .map((th) => th.dataset.value);
 // cache the color counts for faster judging
 solution.count = count(solution);
 
@@ -35,7 +36,8 @@ function guess() {
   const countEl = document.querySelector('#count');
   let tries = +countEl.dataset.count;
 
-  const guess = new Array(...document.querySelectorAll('#guess input')).map(({value}) => value);
+  const guess = new Array(...document.querySelectorAll('#guess input'))
+    .map(({value}) => value);
   guess.count = count(guess);
 
   const [numCorrectColor, numCorrectPlace] = judge(guess);
@@ -72,7 +74,8 @@ function judge(guess) {
 }
 
 function record(guess, numCorrectColor, numCorrectPlace, tr) {
-  guess.forEach((color, i) => tr.querySelectorAll('td')[i].querySelector('.color').style.backgroundColor = color);
+  guess
+    .forEach((color, i) => tr.querySelectorAll('td')[i].querySelector('.color').style.backgroundColor = color);
 
   const response = tr.querySelector('.response');
   for (let i = 0; i < numCorrectColor; ++i) {
@@ -90,9 +93,8 @@ function record(guess, numCorrectColor, numCorrectPlace, tr) {
 function reveal(victory) {
   document.querySelector('[type="submit"]').style.display = 'none';
 
-  new Array(...document.querySelectorAll('#solution th')).map((th) => {
-    th.querySelector('.color').style.backgroundColor = th.dataset.value;
-  });
+  new Array(...document.querySelectorAll('#solution th'))
+    .map((th) => th.querySelector('.color').style.backgroundColor = th.dataset.value);
 
   const status = document.querySelector('#status');
   if (victory) {
