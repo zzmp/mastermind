@@ -1,6 +1,7 @@
 // aesthetic adjustment
 document.querySelector('button').style.width = `${document.querySelector('table').offsetWidth}px`;
 
+
 // collect all possible colors
 const colors = new Array(...document.querySelectorAll('#colors option')).map(({value}) => value);
 
@@ -22,16 +23,19 @@ solution.count = count(solution);
 
 // handler for user guesses
 function guess() {
-  // get the guess
+  const countEl = document.querySelector('#count');
+  let tries = +countEl.dataset.count;
+
   const guess = new Array(...document.querySelectorAll('#guess input')).map(({value}) => value);
+  guess.count = count(guess);
 
   const [numCorrectColor, numCorrectPlace] = judge(guess);
-  record(guess, numCorrectColor, numCorrectPlace);
 
-  const count = document.querySelector('#count');
-  let tries = +count.dataset.count;
+  const tr = document.querySelectorAll('tr')[tries];
+  record(guess, numCorrectColor, numCorrectPlace, tr);
+
   tries -= 1;
-  count.dataset.count = count.innerText = tries;
+  countEl.dataset.count = countEl.innerText = tries;
 
   if (numCorrectPlace === guess.length) {
     // victory!
@@ -43,7 +47,6 @@ function guess() {
 }
 
 function judge(guess) {
-  guess.count = count(guess);
   let numCorrectColor = Object.keys(guess.count).reduce((n, color) => {
     const correct = Math.min(solution.count[color] || 0, guess.count[color]);
     return n + correct;
@@ -59,8 +62,7 @@ function judge(guess) {
   return [numCorrectColor, numCorrectPlace];
 }
 
-function record(guess, numCorrectColor, numCorrectPlace) {
-  const tr = document.createElement('tr');
+function record(guess, numCorrectColor, numCorrectPlace, tr) {
   guess.forEach((color) => {
     const td = document.createElement('td');
     td.style.backgroundColor = color;
@@ -69,7 +71,6 @@ function record(guess, numCorrectColor, numCorrectPlace) {
 
   const response = document.createElement('td');
   response.classList.add('response');
-  console.log(numCorrectColor, numCorrectPlace);
   for (let i = 0; i < numCorrectColor; ++i) {
     const el = document.createElement('div');
     el.style.backgroundColor = 'white';
@@ -81,9 +82,6 @@ function record(guess, numCorrectColor, numCorrectPlace) {
     response.appendChild(el);
   }
   tr.appendChild(response);
-
-  const guessEl = document.querySelector('#guess');
-  guessEl.parentNode.insertBefore(tr, guessEl);
 }
 
 function reveal(victory) {

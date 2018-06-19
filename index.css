@@ -3,15 +3,12 @@ table {
 }
 
 tr {
+  background-color: grey;
   height: 30px;
 }
 
 td {
   min-width: 10px;
-}
-
-.request, .response {
-  background-color: grey;
 }
 
 .response div {
